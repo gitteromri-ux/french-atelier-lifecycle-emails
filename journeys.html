@@ -1,0 +1,763 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Full funnel · every segment, every email · your teacher course emails</title>
+<style>
+:root{--bg:#0d1117;--fg:#ffffff;--muted:#c9d1d9;--card:#161b22;--line:#3b434d;--gold:#F5C451;--purple:#B79CFF;--green:#4ade80}
+*{box-sizing:border-box} html{scroll-behavior:smooth;scroll-padding-top:190px}
+body{margin:0;background:var(--bg);color:var(--fg);font:22px/1.5 -apple-system,Segoe UI,Inter,Arial,sans-serif}
+a{color:var(--gold)}
+code{overflow-wrap:anywhere;word-break:break-word} .meta>div{min-width:0}
+header.hero{padding:56px 40px 30px;border-bottom:1px solid var(--line);max-width:1400px;margin:0 auto}
+header.hero .kicker{color:var(--gold);text-transform:uppercase;letter-spacing:.14em;font-size:20px;font-weight:800;margin:0 0 14px}
+header.hero h1{margin:0 0 16px;font-size:64px;line-height:1.08;letter-spacing:-.015em}
+header.hero h1 small{display:block;font-size:28px;color:var(--muted);font-weight:500;margin-top:14px;line-height:1.35}
+header.hero p{margin:10px 0;color:var(--muted);max-width:1200px;font-size:22px}
+.count{display:inline-block;background:var(--gold);color:#0d1117;font-weight:800;border-radius:999px;padding:4px 18px;margin-left:12px;font-size:26px;vertical-align:middle}
+nav.switch{position:sticky;top:0;z-index:20;background:rgba(13,17,23,.97);backdrop-filter:blur(8px);border-bottom:2px solid var(--line)}
+nav.switch .in{max-width:1400px;margin:0 auto;padding:16px 40px 14px;display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+nav.switch a{font-weight:800;color:var(--fg);text-decoration:none;border:2px solid var(--c);border-radius:14px;padding:10px 22px;min-height:56px;display:inline-flex;align-items:center;gap:12px;font-size:22px;background:#161b22}
+nav.switch a:hover{filter:brightness(1.15)} nav.switch a .dot{width:16px;height:16px;border-radius:50%;background:var(--c)} nav.switch a small{color:var(--muted);font-weight:600;font-size:20px}
+nav.switch a.seg{font-size:32px;min-height:76px;padding:12px 32px;background:var(--c);color:#0d1117;border-color:var(--c)} nav.switch a.seg small{color:#0d1117;opacity:.85;font-size:24px} nav.switch a.seg .dot{background:#0d1117}
+nav.switch a.seg.on{box-shadow:0 0 0 5px #fff inset}
+nav.switch a.ph{color:var(--c);font-size:20px;padding:8px 16px;min-height:50px}
+nav.switch .sep{flex-basis:100%;height:0;margin:0}
+nav.switch[data-cur="regular"] a.ph[href^="#vip"],nav.switch[data-cur="vip"] a.ph[href^="#regular"]{display:none}
+nav.switch .jump{color:var(--muted);font-size:20px;font-weight:700;margin-right:6px}
+main{max-width:1400px;margin:0 auto;padding:16px 40px 140px}
+section.segment{margin:72px 0 0;padding-top:8px}
+.seghead{background:linear-gradient(180deg,#161b22,#0d1117);border:2px solid var(--c);border-left:14px solid var(--c);border-radius:22px;padding:40px 44px;display:grid;grid-template-columns:1.4fr 1fr;gap:36px}
+.seghead .tier{display:inline-block;font-weight:800;font-size:22px;letter-spacing:.08em;text-transform:uppercase;color:#0d1117;background:var(--c);border-radius:8px;padding:6px 16px}
+.seghead h2{margin:18px 0 6px;font-size:58px;line-height:1.08}
+.seghead .price{font-size:44px;font-weight:800;color:var(--c);margin:0 0 20px}
+.seghead p{margin:0;color:var(--fg);font-size:26px;line-height:1.45}
+.seghead .label{color:var(--c);font-size:20px;text-transform:uppercase;letter-spacing:.12em;font-weight:800;margin:0 0 10px}
+.seghead ul{margin:0;padding:0;list-style:none} .seghead li{padding:12px 0;border-top:1px solid var(--line);font-size:24px} .seghead li:first-child{border-top:0}
+.summary{margin:36px 0 16px;background:var(--card);border:2px solid var(--line);border-radius:18px;overflow:hidden}
+.summary h3{margin:0;padding:22px 28px;font-size:30px;border-bottom:2px solid var(--line);color:var(--c);font-weight:800}
+.summary table{width:100%;border-collapse:collapse;font-size:22px}
+.summary th{text-align:left;color:var(--gold);font-weight:800;font-size:20px;text-transform:uppercase;letter-spacing:.08em;padding:16px 20px;border-bottom:2px solid var(--line);background:#11161d}
+.summary td{padding:16px 20px;border-bottom:1px solid var(--line);vertical-align:top;line-height:1.4}
+.summary tr:last-child td{border-bottom:0}
+.summary td.num{font-family:ui-monospace,Menlo,monospace;font-weight:800;white-space:nowrap;font-size:24px;color:var(--c)} .summary td.num a{color:var(--c);text-decoration:none;border-bottom:2px dotted var(--c)}
+.summary td.tm{color:var(--green);min-width:280px;font-weight:700} .summary td.tm.tbd{color:var(--gold)}
+.summary td.sub{font-weight:800;color:#fff} .summary td.pur{color:var(--muted)}
+.summary tr.ph td{background:#1c2330;color:#fff;font-weight:800;font-size:24px;padding:16px 20px;border-left:10px solid var(--c)}
+.stage{margin:80px 0 14px;display:flex;align-items:center;gap:18px}
+.stage h3{margin:0;font-size:40px;text-transform:uppercase;letter-spacing:.1em;color:#fff} .stage:after{content:"";flex:1;height:3px;background:var(--c)}
+.phase{position:relative;margin:30px 0 0;padding-left:84px}
+.phase:before{content:"";position:absolute;left:28px;top:18px;bottom:0;width:4px;background:linear-gradient(180deg,var(--c),var(--line))}
+.phase h4{margin:0 0 8px;font-size:44px;color:var(--c);line-height:1.15}
+.phase .trig{margin:0 0 8px;color:var(--fg);font-size:26px;max-width:1100px}
+.phase .auto{margin:0 0 8px;color:var(--muted);font-size:22px} .phase .auto code{color:#9ecbff;font-size:22px}
+.phase.skip .note{border:2px dashed var(--line);border-radius:14px;padding:22px 26px;color:var(--fg);margin-top:14px;max-width:1100px;font-size:24px}
+.node{position:relative;margin:44px 0 0}
+.node .pin{position:absolute;left:-84px;top:26px;width:60px;height:60px;border-radius:50%;background:var(--c);border:4px solid var(--c);color:#0d1117;font-weight:800;font-size:20px;display:flex;align-items:center;justify-content:center}
+article.email{background:var(--card);border:2px solid var(--line);border-radius:20px;overflow:hidden}
+.meta{padding:30px 34px 26px;border-bottom:2px solid var(--line);display:grid;grid-template-columns:1fr auto;gap:24px}
+.meta .row{display:flex;flex-wrap:wrap;gap:14px;align-items:center;margin-bottom:14px}
+.meta .num{font-family:ui-monospace,Menlo,monospace;font-weight:800;font-size:28px;background:#0d1117;border:2px solid var(--c);color:var(--c);border-radius:10px;padding:6px 16px}
+.meta .tierpill{font-weight:800;font-size:20px;letter-spacing:.06em;text-transform:uppercase;color:#0d1117;background:var(--c);border-radius:8px;padding:6px 14px}
+.meta .time{font-weight:800;font-size:26px;color:var(--green);display:inline-flex;align-items:center;gap:10px;line-height:1.3} .meta .time.tbd{color:var(--gold)}
+.meta .time:before{content:"⏱";font-size:26px}
+.meta .subject{font-size:44px;font-weight:800;line-height:1.15;margin:10px 0 12px;color:#fff}
+.meta .purpose{color:var(--fg);font-size:28px;margin:0 0 10px;line-height:1.4} .meta .purpose b{color:var(--c);font-weight:800}
+.meta .eyebrow{color:var(--muted);font-size:21px;margin:0} .meta .eyebrow code{color:#9ecbff}
+.meta .cta{color:var(--muted);font-size:21px;margin:8px 0 0}
+.meta .src{color:var(--muted);font-size:18px;margin:6px 0 0}
+.actions{display:flex;flex-direction:column;gap:12px;align-items:stretch;min-width:240px}
+.btn{font:inherit;font-weight:800;font-size:22px;padding:12px 20px;border-radius:12px;border:2px solid var(--c);background:#21262d;color:#fff;text-decoration:none;min-height:60px;display:inline-flex;align-items:center;justify-content:center}
+.btn:hover{filter:brightness(1.15)}
+.frame{background:#F5F0E5;padding:28px 0;display:flex;justify-content:center}
+.frame .fit{width:1100px;max-width:100%;position:relative}
+.frame iframe{display:block;width:640px;border:0;background:#F5F0E5;min-height:1900px;transform-origin:top left}
+.frame .fallback{text-align:center;color:#0A1220;font-size:20px;padding:14px}
+footer{max-width:1400px;margin:0 auto;padding:36px 40px 100px;color:var(--muted);font-size:20px;border-top:1px solid var(--line)}
+@media (max-width:1000px){.seghead{grid-template-columns:1fr} .meta{grid-template-columns:1fr} .actions{flex-direction:row;flex-wrap:wrap} .actions .btn{flex:1}}
+@media (max-width:700px){body{font-size:19px} html{scroll-padding-top:150px} header.hero{padding:30px 18px 20px} header.hero h1{font-size:38px} header.hero h1 small{font-size:21px} header.hero p{font-size:19px} .count{font-size:20px}
+ nav.switch .in{padding:10px 12px;gap:8px;flex-wrap:nowrap} nav.switch a.ph,nav.switch .jump,nav.switch .sep{display:none} nav.switch a.seg{font-size:22px;min-height:60px;padding:8px 14px;flex:1;justify-content:center;border-radius:12px} nav.switch a.seg small{font-size:15px} nav.switch a.seg .dot{display:none}
+ main{padding:12px 16px 100px} .seghead{padding:26px 22px;border-left-width:10px} .seghead h2{font-size:36px} .seghead .price{font-size:30px} .seghead p{font-size:20px} .seghead li{font-size:19px}
+ .summary{overflow-x:auto} .summary table{min-width:900px;font-size:19px} .summary h3{font-size:22px;padding:16px 18px}
+ .stage h3{font-size:26px} .phase{padding-left:52px} .phase:before{left:16px} .phase h4{font-size:28px} .phase .trig{font-size:20px} .phase .auto{font-size:18px}
+ .node .pin{left:-52px;width:40px;height:40px;font-size:15px;top:22px} .meta{padding:20px 18px} .meta .subject{font-size:28px} .meta .purpose{font-size:21px} .meta .num{font-size:22px} .meta .time{font-size:20px} .meta .tierpill{font-size:16px} .meta .eyebrow,.meta .cta{font-size:17px} .meta .src{font-size:15px} .btn{font-size:18px;min-height:52px}
+ footer{font-size:17px;padding:26px 16px 80px}}
+</style></head><body>
+<header class="hero">
+  <p class="kicker">The French Atelier · your French Atelier teacher course · ActiveCampaign email set</p>
+  <h1>Full funnel · every segment, every email <span class="count">36 emails</span><small>Two segments — Regular $99 and VIP $1,460 — from abandoned cart to post-session. Every email rendered full size, in send order.</small></h1>
+  <p>Source of truth: the install-ready files in <a href="launch-email-for-chris/">launch-email-for-chris/</a> (subjects, preheaders and buttons are read from the email HTML) and <a href="FACTS.md">FACTS.md</a>. Timings shown in <b style="color:var(--green)">green</b> are stated in the email copy itself; timings in <b style="color:var(--gold)">gold</b> are not written anywhere in this repo and are marked “per Chris's automation”.</p>
+  <p>Not in this set: the Blueprint / Full course + VIP tier (removed 2026-09-24 by Omri) and Course u1–u4 (the four follow-ups are VIP-only). Dates appear as the AC token %FACOURSESTARTDATE%; names as %FIRSTNAME%. <a href="launch-email-for-chris/">Install gallery (copy / download HTML)</a> · <a href="https://github.com/gitteromri-ux/lla-course-emails-3tier">GitHub</a></p>
+</header>
+<nav class="switch"><div class="in"><a class="seg" href="#regular" style="--c:#A78BFA"><span class="dot"></span>Regular <small>$99 · 16 emails</small></a><a class="seg" href="#vip" style="--c:#F5C451"><span class="dot"></span>VIP <small>$1,460 · 20 emails</small></a><span class="sep"></span><span class="jump">Jump to automation:</span><a class="ph" href="#regular-a1" style="--c:#A78BFA"><span class="dot"></span>Cart 1 · name <small>Reg</small></a><a class="ph" href="#regular-a2" style="--c:#A78BFA"><span class="dot"></span>Cart 2 · date <small>Reg</small></a><a class="ph" href="#regular-a3" style="--c:#A78BFA"><span class="dot"></span>Cart 3 · payment <small>Reg</small></a><a class="ph" href="#regular-b" style="--c:#A78BFA"><span class="dot"></span>Onboarding <small>Reg</small></a><a class="ph" href="#regular-x" style="--c:#A78BFA"><span class="dot"></span>No-show <small>Reg</small></a><a class="ph" href="#vip-a1" style="--c:#F5C451"><span class="dot"></span>Cart 1 · name <small>VIP</small></a><a class="ph" href="#vip-a2" style="--c:#F5C451"><span class="dot"></span>Cart 2 · date <small>VIP</small></a><a class="ph" href="#vip-a3" style="--c:#F5C451"><span class="dot"></span>Cart 3 · payment <small>VIP</small></a><a class="ph" href="#vip-b" style="--c:#F5C451"><span class="dot"></span>Onboarding <small>VIP</small></a><a class="ph" href="#vip-u" style="--c:#F5C451"><span class="dot"></span>VIP follow-up <small>VIP</small></a><a class="ph" href="#vip-x" style="--c:#F5C451"><span class="dot"></span>No-show <small>VIP</small></a></div></nav>
+<main>
+<section class="segment" id="regular" style="--c:#A78BFA">
+<div class="seghead"><div>
+  <span class="tier">Segment · Regular</span>
+  <h2>Regular · The French Atelier Live Course</h2>
+  <p class="price">$99 today, then 4 × $189 <span style="color:var(--muted);font-size:28px;font-weight:600;display:block;margin-top:6px">· 16 emails · 5 automations</span></p>
+  <p class="label">Who enters and how</p>
+  <p>Buyer of the 60-minute live French course on Zoom (no Q&amp;A). Enters the abandoned-cart automations by dropping out of the $99 checkout; enters onboarding on purchase; no-show after the session if not in the class.</p>
+</div><div>
+  <p class="label">Segment facts (FACTS.md)</p>
+  <ul><li>85 minutes, live on Zoom · not a recording</li><li>Choice of two live dates (Oct 27 · Nov 14), chosen at registration</li><li>No refund · all sales final at checkout</li><li>No post-session follow-up: u1–u4 are VIP-only</li></ul>
+</div></div>
+<div class="summary"><h3>Summary · Regular $99 · email # · timing · subject · purpose</h3><table><thead><tr><th>Email #</th><th>Send timing</th><th>Subject line</th><th>Purpose (preheader)</th></tr></thead><tbody>
+<tr class="ph"><td colspan="4">Before purchase · Abandoned cart · Name Details (checkout screen 1) · <span style="color:var(--muted)">FA_Abandoned_Cart_Name_Details</span></td></tr>
+<tr><td class="num"><a href="#regular-jm-a1-1">JM-A1-1</a><br><span style="color:var(--muted);font-weight:500;font-size:20px">Email 1 of 3</span></td><td class="tm tbd">After dropout at checkout screen 1 (name details) · email 1 of 3 · delay per Chris&#x27;s automation</td><td class="sub">One step left: choose your level</td><td class="pur">Your details are saved. Pick your level and your seat is set.</td></tr>
+<tr><td class="num"><a href="#regular-jm-a1-2">JM-A1-2</a><br><span style="color:var(--muted);font-weight:500;font-size:20px">Email 2 of 3</span></td><td class="tm tbd">After dropout at checkout screen 1 (name details) · email 2 of 3 · delay per Chris&#x27;s automation</td><td class="sub">Who is teaching you: a certified native French teacher</td><td class="pur">Certified native teachers, the Acadomia method, and the level you still need to choose.</td></tr>
+<tr><td class="num"><a href="#regular-jm-a1-3">JM-A1-3</a><br><span style="color:var(--muted);font-weight:500;font-size:20px">Email 3 of 3</span></td><td class="tm tbd">After dropout at checkout screen 1 (name details) · email 3 of 3 · delay per Chris&#x27;s automation</td><td class="sub">Still choosing a date? Groups are filling</td><td class="pur">Your details are saved. Choose your level soon, while seats in the group remain.</td></tr>
+<tr class="ph"><td colspan="4">Before purchase · Abandoned cart · Course Details (checkout screen 2, date) · <span style="color:var(--muted)">FA_Abandoned_Cart_Course_Details</span></td></tr>
+<tr><td class="num"><a href="#regular-jm-a2-1">JM-A2-1</a><br><span style="color:var(--muted);font-weight:500;font-size:20px">Email 1 of 3</span></td><td class="tm tbd">After dropout at checkout screen 2 (date chosen) · email 1 of 3 · delay per Chris&#x27;s automation</td><td class="sub">Your level is chosen. One step finishes your booking</td><td class="pur">You picked %FACOURSESTARTDATE%. Finish your booking and the seat is yours.</td></tr>
+<tr><td class="num"><a href="#regular-jm-a2-2">JM-A2-2</a><br><span style="color:var(--muted);font-weight:500;font-size:20px">Email 2 of 3</span></td><td class="tm tbd">After dropout at checkout screen 2 (date chosen) · email 2 of 3 · delay per Chris&#x27;s automation</td><td class="sub">Live, not a recording: finish your booking</td><td class="pur">Live from France from %FACOURSESTARTDATE%. Finish your booking in a minute.</td></tr>
+<tr><td class="num"><a href="#regular-jm-a2-3">JM-A2-3</a><br><span style="color:var(--muted);font-weight:500;font-size:20px">Email 3 of 3</span></td><td class="tm tbd">After dropout at checkout screen 2 (date chosen) · email 3 of 3 · delay per Chris&#x27;s automation</td><td class="sub">Finish your booking soon, %FIRSTNAME%</td><td class="pur">A last note about the course you chose. Booking takes a minute.</td></tr>
+<tr class="ph"><td colspan="4">Before purchase · Abandoned cart · No Payment (payment page) · <span style="color:var(--muted)">FA_Abandoned_Cart_No_Payment</span></td></tr>
+<tr><td class="num"><a href="#regular-jm-a3-1">JM-A3-1</a><br><span style="color:var(--muted);font-weight:500;font-size:20px">Email 1 of 3</span></td><td class="tm tbd">After dropout at the payment page · email 1 of 3 · delay per Chris&#x27;s automation</td><td class="sub">Your order is set up. Complete your payment</td><td class="pur">Order and date saved, nothing charged. Payment takes about a minute.</td></tr>
+<tr><td class="num"><a href="#regular-jm-a3-2">JM-A3-2</a><br><span style="color:var(--muted);font-weight:500;font-size:20px">Email 2 of 3</span></td><td class="tm tbd">After dropout at the payment page · email 2 of 3 · delay per Chris&#x27;s automation</td><td class="sub">One minute completes your order, %FIRSTNAME%</td><td class="pur">Your order and date are saved; only the payment is missing. Card or PayPal, about a minute.</td></tr>
+<tr><td class="num"><a href="#regular-jm-a3-3">JM-A3-3</a><br><span style="color:var(--muted);font-weight:500;font-size:20px">Email 3 of 3</span></td><td class="tm tbd">After dropout at the payment page · email 3 of 3 · delay per Chris&#x27;s automation</td><td class="sub">Complete your order soon, %FIRSTNAME%</td><td class="pur">A last note about the enrollment you set up. Nothing charged yet; payment takes a minute.</td></tr>
+<tr class="ph"><td colspan="4">After purchase · Onboarding · after purchase · <span style="color:var(--muted)">FA_Onboarding_WIP</span></td></tr>
+<tr><td class="num"><a href="#regular-jm-b1">JM-B1</a><br><span style="color:var(--muted);font-weight:500;font-size:20px">Email 1 of 4</span></td><td class="tm tbd">After purchase · seat confirmation · exact delay per Chris&#x27;s automation</td><td class="sub">You’re in. Your learning platform is ready</td><td class="pur">Your seat is confirmed. Your learning platform has your first lesson and materials.</td></tr>
+<tr><td class="num"><a href="#regular-jm-b2">JM-B2</a><br><span style="color:var(--muted);font-weight:500;font-size:20px">Email 2 of 4</span></td><td class="tm">3 days before the session</td><td class="sub">Three days to your first class. Here’s how to prepare</td><td class="pur">What your first lesson covers, and the one thing to bring.</td></tr>
+<tr><td class="num"><a href="#regular-jm-b3">JM-B3</a><br><span style="color:var(--muted);font-weight:500;font-size:20px">Email 3 of 4</span></td><td class="tm">24 hours before the session (day before)</td><td class="sub">Tomorrow: your first live lesson</td><td class="pur">Your course starts in 24 hours. Join through your learning platform.</td></tr>
+<tr><td class="num"><a href="#regular-jm-b4">JM-B4</a><br><span style="color:var(--muted);font-weight:500;font-size:20px">Email 4 of 4</span></td><td class="tm">About 2 hours before the session</td><td class="sub">Starting in two hours</td><td class="pur">Sign in to your learning platform to join.</td></tr>
+<tr class="ph"><td colspan="4">VIP follow-up · 20% Capsule discount — not sent for this segment (VIP-only)</td></tr>
+<tr class="ph"><td colspan="4">After the session · missed · No-show buyers · <span style="color:var(--muted)">FA_No-Show Buyers_WIP</span></td></tr>
+<tr><td class="num"><a href="#regular-jm-x1">JM-X1</a><br><span style="color:var(--muted);font-weight:500;font-size:20px">Email 1 of 3</span></td><td class="tm tbd">After the session, attendance record = not in the class · email 1 of 3 · delay per Chris&#x27;s automation</td><td class="sub">We missed you, %FIRSTNAME%</td><td class="pur">You were not in the class. Here is where things stand, and how to reach us.</td></tr>
+<tr><td class="num"><a href="#regular-jm-x2">JM-X2</a><br><span style="color:var(--muted);font-weight:500;font-size:20px">Email 2 of 3</span></td><td class="tm tbd">After the session, attendance record = not in the class · email 2 of 3 · delay per Chris&#x27;s automation</td><td class="sub">Your course information, %FIRSTNAME%</td><td class="pur">Where to find your first lesson information and materials, and how to reach us.</td></tr>
+<tr><td class="num"><a href="#regular-jm-x3">JM-X3</a><br><span style="color:var(--muted);font-weight:500;font-size:20px">Email 3 of 3</span></td><td class="tm tbd">After the session, attendance record = not in the class · email 3 of 3 · delay per Chris&#x27;s automation</td><td class="sub">Still here if you need us, %FIRSTNAME%</td><td class="pur">A final follow-up on your missed session, and how to reach us.</td></tr>
+</tbody></table></div>
+<div class="stage"><h3>Before purchase</h3></div>
+<div class="phase" id="regular-a1"><h4>Abandoned cart · Name Details (checkout screen 1)</h4><p class="trig">Enters when a visitor drops out at checkout screen 1 (name details) without choosing a session date.</p><p class="auto">ActiveCampaign automation <code>FA_Abandoned_Cart_Name_Details</code> · 3 emails · sent in this order</p>
+<div class="node" id="regular-jm-a1-1"><div class="pin">1/3</div>
+<article class="email">
+  <div class="meta"><div>
+    <div class="row"><span class="num">JM-A1-1</span><span class="tierpill">Regular $99</span><span class="time tbd">After dropout at checkout screen 1 (name details) · email 1 of 3 · delay per Chris&#x27;s automation</span></div>
+    <div class="subject">One step left: choose your level</div>
+    <p class="purpose"><b>Purpose:</b> Your details are saved. Pick your level and your seat is set.</p>
+    <p class="eyebrow">In-email banner: Almost There · Your details are saved. Next: choose your level · Timing source: README.md funnel description</p>
+    <p class="cta">Button: Choose My Level</p>
+    <p class="src">File <code>launch-email-for-chris/course/jm-a1-1.html</code> · FA_Abandoned_Cart_Name_Details · Email 1 of 3</p>
+  </div><div class="actions">
+    <a class="btn" href="launch-email-for-chris/course/jm-a1-1.html" target="_blank" rel="noopener">Open email</a>
+    <a class="btn" href="launch-email-for-chris/#course-jm-a1-1">Copy / download</a>
+  </div></div>
+  <div class="frame"><div class="fit"><iframe title="course jm-a1-1" data-src="launch-email-for-chris/course/jm-a1-1.html" loading="lazy" scrolling="no"></iframe><div class="fallback">If the email does not render here, <a href="launch-email-for-chris/course/jm-a1-1.html" target="_blank" rel="noopener">open JM-A1-1 directly</a>.</div></div></div>
+</article></div>
+<div class="node" id="regular-jm-a1-2"><div class="pin">2/3</div>
+<article class="email">
+  <div class="meta"><div>
+    <div class="row"><span class="num">JM-A1-2</span><span class="tierpill">Regular $99</span><span class="time tbd">After dropout at checkout screen 1 (name details) · email 2 of 3 · delay per Chris&#x27;s automation</span></div>
+    <div class="subject">Who is teaching you: a certified native French teacher</div>
+    <p class="purpose"><b>Purpose:</b> Certified native teachers, the Acadomia method, and the level you still need to choose.</p>
+    <p class="eyebrow">In-email banner: Verified Results · Ranked No. 1 in France · Timing source: README.md funnel description</p>
+    <p class="cta">Button: Choose My Level</p>
+    <p class="src">File <code>launch-email-for-chris/course/jm-a1-2.html</code> · FA_Abandoned_Cart_Name_Details · Email 2 of 3</p>
+  </div><div class="actions">
+    <a class="btn" href="launch-email-for-chris/course/jm-a1-2.html" target="_blank" rel="noopener">Open email</a>
+    <a class="btn" href="launch-email-for-chris/#course-jm-a1-2">Copy / download</a>
+  </div></div>
+  <div class="frame"><div class="fit"><iframe title="course jm-a1-2" data-src="launch-email-for-chris/course/jm-a1-2.html" loading="lazy" scrolling="no"></iframe><div class="fallback">If the email does not render here, <a href="launch-email-for-chris/course/jm-a1-2.html" target="_blank" rel="noopener">open JM-A1-2 directly</a>.</div></div></div>
+</article></div>
+<div class="node" id="regular-jm-a1-3"><div class="pin">3/3</div>
+<article class="email">
+  <div class="meta"><div>
+    <div class="row"><span class="num">JM-A1-3</span><span class="tierpill">Regular $99</span><span class="time tbd">After dropout at checkout screen 1 (name details) · email 3 of 3 · delay per Chris&#x27;s automation</span></div>
+    <div class="subject">Still choosing a date? Groups are filling</div>
+    <p class="purpose"><b>Purpose:</b> Your details are saved. Choose your level soon, while seats in the group remain.</p>
+    <p class="eyebrow">In-email banner: Final Reminder · Choose your level soon · Timing source: README.md funnel description</p>
+    <p class="cta">Button: Choose My Level</p>
+    <p class="src">File <code>launch-email-for-chris/course/jm-a1-3.html</code> · FA_Abandoned_Cart_Name_Details · Email 3 of 3</p>
+  </div><div class="actions">
+    <a class="btn" href="launch-email-for-chris/course/jm-a1-3.html" target="_blank" rel="noopener">Open email</a>
+    <a class="btn" href="launch-email-for-chris/#course-jm-a1-3">Copy / download</a>
+  </div></div>
+  <div class="frame"><div class="fit"><iframe title="course jm-a1-3" data-src="launch-email-for-chris/course/jm-a1-3.html" loading="lazy" scrolling="no"></iframe><div class="fallback">If the email does not render here, <a href="launch-email-for-chris/course/jm-a1-3.html" target="_blank" rel="noopener">open JM-A1-3 directly</a>.</div></div></div>
+</article></div>
+</div>
+<div class="phase" id="regular-a2"><h4>Abandoned cart · Course Details (checkout screen 2, date)</h4><p class="trig">Enters when the date is chosen but the booking is not finished (checkout screen 2).</p><p class="auto">ActiveCampaign automation <code>FA_Abandoned_Cart_Course_Details</code> · 3 emails · sent in this order</p>
+<div class="node" id="regular-jm-a2-1"><div class="pin">1/3</div>
+<article class="email">
+  <div class="meta"><div>
+    <div class="row"><span class="num">JM-A2-1</span><span class="tierpill">Regular $99</span><span class="time tbd">After dropout at checkout screen 2 (date chosen) · email 1 of 3 · delay per Chris&#x27;s automation</span></div>
+    <div class="subject">Your level is chosen. One step finishes your booking</div>
+    <p class="purpose"><b>Purpose:</b> You picked %FACOURSESTARTDATE%. Finish your booking and the seat is yours.</p>
+    <p class="eyebrow">In-email banner: Almost Booked · Your level is chosen; one step remains · Timing source: README.md funnel description</p>
+    <p class="cta">Button: Finish My Booking</p>
+    <p class="src">File <code>launch-email-for-chris/course/jm-a2-1.html</code> · FA_Abandoned_Cart_Course_Details · Email 1 of 3</p>
+  </div><div class="actions">
+    <a class="btn" href="launch-email-for-chris/course/jm-a2-1.html" target="_blank" rel="noopener">Open email</a>
+    <a class="btn" href="launch-email-for-chris/#course-jm-a2-1">Copy / download</a>
+  </div></div>
+  <div class="frame"><div class="fit"><iframe title="course jm-a2-1" data-src="launch-email-for-chris/course/jm-a2-1.html" loading="lazy" scrolling="no"></iframe><div class="fallback">If the email does not render here, <a href="launch-email-for-chris/course/jm-a2-1.html" target="_blank" rel="noopener">open JM-A2-1 directly</a>.</div></div></div>
+</article></div>
+<div class="node" id="regular-jm-a2-2"><div class="pin">2/3</div>
+<article class="email">
+  <div class="meta"><div>
+    <div class="row"><span class="num">JM-A2-2</span><span class="tierpill">Regular $99</span><span class="time tbd">After dropout at checkout screen 2 (date chosen) · email 2 of 3 · delay per Chris&#x27;s automation</span></div>
+    <div class="subject">Live, not a recording: finish your booking</div>
+    <p class="purpose"><b>Purpose:</b> Live from France from %FACOURSESTARTDATE%. Finish your booking in a minute.</p>
+    <p class="eyebrow">In-email banner: Live On Zoom · 20 live lessons on Zoom · Timing source: README.md funnel description</p>
+    <p class="cta">Button: Finish My Booking</p>
+    <p class="src">File <code>launch-email-for-chris/course/jm-a2-2.html</code> · FA_Abandoned_Cart_Course_Details · Email 2 of 3</p>
+  </div><div class="actions">
+    <a class="btn" href="launch-email-for-chris/course/jm-a2-2.html" target="_blank" rel="noopener">Open email</a>
+    <a class="btn" href="launch-email-for-chris/#course-jm-a2-2">Copy / download</a>
+  </div></div>
+  <div class="frame"><div class="fit"><iframe title="course jm-a2-2" data-src="launch-email-for-chris/course/jm-a2-2.html" loading="lazy" scrolling="no"></iframe><div class="fallback">If the email does not render here, <a href="launch-email-for-chris/course/jm-a2-2.html" target="_blank" rel="noopener">open JM-A2-2 directly</a>.</div></div></div>
+</article></div>
+<div class="node" id="regular-jm-a2-3"><div class="pin">3/3</div>
+<article class="email">
+  <div class="meta"><div>
+    <div class="row"><span class="num">JM-A2-3</span><span class="tierpill">Regular $99</span><span class="time tbd">After dropout at checkout screen 2 (date chosen) · email 3 of 3 · delay per Chris&#x27;s automation</span></div>
+    <div class="subject">Finish your booking soon, %FIRSTNAME%</div>
+    <p class="purpose"><b>Purpose:</b> A last note about the course you chose. Booking takes a minute.</p>
+    <p class="eyebrow">In-email banner: Last Note · Finish your booking soon · Timing source: README.md funnel description</p>
+    <p class="cta">Button: Finish My Booking</p>
+    <p class="src">File <code>launch-email-for-chris/course/jm-a2-3.html</code> · FA_Abandoned_Cart_Course_Details · Email 3 of 3</p>
+  </div><div class="actions">
+    <a class="btn" href="launch-email-for-chris/course/jm-a2-3.html" target="_blank" rel="noopener">Open email</a>
+    <a class="btn" href="launch-email-for-chris/#course-jm-a2-3">Copy / download</a>
+  </div></div>
+  <div class="frame"><div class="fit"><iframe title="course jm-a2-3" data-src="launch-email-for-chris/course/jm-a2-3.html" loading="lazy" scrolling="no"></iframe><div class="fallback">If the email does not render here, <a href="launch-email-for-chris/course/jm-a2-3.html" target="_blank" rel="noopener">open JM-A2-3 directly</a>.</div></div></div>
+</article></div>
+</div>
+<div class="phase" id="regular-a3"><h4>Abandoned cart · No Payment (payment page)</h4><p class="trig">Enters when the order and date are set up but payment is not completed.</p><p class="auto">ActiveCampaign automation <code>FA_Abandoned_Cart_No_Payment</code> · 3 emails · sent in this order</p>
+<div class="node" id="regular-jm-a3-1"><div class="pin">1/3</div>
+<article class="email">
+  <div class="meta"><div>
+    <div class="row"><span class="num">JM-A3-1</span><span class="tierpill">Regular $99</span><span class="time tbd">After dropout at the payment page · email 1 of 3 · delay per Chris&#x27;s automation</span></div>
+    <div class="subject">Your order is set up. Complete your payment</div>
+    <p class="purpose"><b>Purpose:</b> Order and date saved, nothing charged. Payment takes about a minute.</p>
+    <p class="eyebrow">In-email banner: Payment Not Completed · Your order is set up; nothing has been charged · Timing source: README.md funnel description</p>
+    <p class="cta">Button: Complete My Order</p>
+    <p class="src">File <code>launch-email-for-chris/course/jm-a3-1.html</code> · FA_Abandoned_Cart_No_Payment · Email 1 of 3</p>
+  </div><div class="actions">
+    <a class="btn" href="launch-email-for-chris/course/jm-a3-1.html" target="_blank" rel="noopener">Open email</a>
+    <a class="btn" href="launch-email-for-chris/#course-jm-a3-1">Copy / download</a>
+  </div></div>
+  <div class="frame"><div class="fit"><iframe title="course jm-a3-1" data-src="launch-email-for-chris/course/jm-a3-1.html" loading="lazy" scrolling="no"></iframe><div class="fallback">If the email does not render here, <a href="launch-email-for-chris/course/jm-a3-1.html" target="_blank" rel="noopener">open JM-A3-1 directly</a>.</div></div></div>
+</article></div>
+<div class="node" id="regular-jm-a3-2"><div class="pin">2/3</div>
+<article class="email">
+  <div class="meta"><div>
+    <div class="row"><span class="num">JM-A3-2</span><span class="tierpill">Regular $99</span><span class="time tbd">After dropout at the payment page · email 2 of 3 · delay per Chris&#x27;s automation</span></div>
+    <div class="subject">One minute completes your order, %FIRSTNAME%</div>
+    <p class="purpose"><b>Purpose:</b> Your order and date are saved; only the payment is missing. Card or PayPal, about a minute.</p>
+    <p class="eyebrow">In-email banner: What You Receive · The full course, $99 today then 4 × $189 · Timing source: README.md funnel description</p>
+    <p class="cta">Button: Complete My Order</p>
+    <p class="src">File <code>launch-email-for-chris/course/jm-a3-2.html</code> · FA_Abandoned_Cart_No_Payment · Email 2 of 3</p>
+  </div><div class="actions">
+    <a class="btn" href="launch-email-for-chris/course/jm-a3-2.html" target="_blank" rel="noopener">Open email</a>
+    <a class="btn" href="launch-email-for-chris/#course-jm-a3-2">Copy / download</a>
+  </div></div>
+  <div class="frame"><div class="fit"><iframe title="course jm-a3-2" data-src="launch-email-for-chris/course/jm-a3-2.html" loading="lazy" scrolling="no"></iframe><div class="fallback">If the email does not render here, <a href="launch-email-for-chris/course/jm-a3-2.html" target="_blank" rel="noopener">open JM-A3-2 directly</a>.</div></div></div>
+</article></div>
+<div class="node" id="regular-jm-a3-3"><div class="pin">3/3</div>
+<article class="email">
+  <div class="meta"><div>
+    <div class="row"><span class="num">JM-A3-3</span><span class="tierpill">Regular $99</span><span class="time tbd">After dropout at the payment page · email 3 of 3 · delay per Chris&#x27;s automation</span></div>
+    <div class="subject">Complete your order soon, %FIRSTNAME%</div>
+    <p class="purpose"><b>Purpose:</b> A last note about the enrollment you set up. Nothing charged yet; payment takes a minute.</p>
+    <p class="eyebrow">In-email banner: Last Note · Complete payment soon to book your seat · Timing source: README.md funnel description</p>
+    <p class="cta">Button: Complete My Order</p>
+    <p class="src">File <code>launch-email-for-chris/course/jm-a3-3.html</code> · FA_Abandoned_Cart_No_Payment · Email 3 of 3</p>
+  </div><div class="actions">
+    <a class="btn" href="launch-email-for-chris/course/jm-a3-3.html" target="_blank" rel="noopener">Open email</a>
+    <a class="btn" href="launch-email-for-chris/#course-jm-a3-3">Copy / download</a>
+  </div></div>
+  <div class="frame"><div class="fit"><iframe title="course jm-a3-3" data-src="launch-email-for-chris/course/jm-a3-3.html" loading="lazy" scrolling="no"></iframe><div class="fallback">If the email does not render here, <a href="launch-email-for-chris/course/jm-a3-3.html" target="_blank" rel="noopener">open JM-A3-3 directly</a>.</div></div></div>
+</article></div>
+</div>
+<div class="stage"><h3>After purchase</h3></div>
+<div class="phase" id="regular-b"><h4>Onboarding · after purchase</h4><p class="trig">Enters on purchase of the seat. Confirmation, then a preparation note, a reminder the day before, and one two hours before the session (cadence stated in the emails).</p><p class="auto">ActiveCampaign automation <code>FA_Onboarding_WIP</code> · 4 emails · sent in this order</p>
+<div class="node" id="regular-jm-b1"><div class="pin">1/4</div>
+<article class="email">
+  <div class="meta"><div>
+    <div class="row"><span class="num">JM-B1</span><span class="tierpill">Regular $99</span><span class="time tbd">After purchase · seat confirmation · exact delay per Chris&#x27;s automation</span></div>
+    <div class="subject">You’re in. Your learning platform is ready</div>
+    <p class="purpose"><b>Purpose:</b> Your seat is confirmed. Your learning platform has your first lesson and materials.</p>
+    <p class="eyebrow">In-email banner: Enrollment Confirmed · Your seat and learning platform are ready · Timing source: email copy: “Your seat is confirmed”</p>
+    <p class="cta">Buttons: Open My Learning Platform / Explore The Culture Capsules</p>
+    <p class="src">File <code>launch-email-for-chris/course/jm-b1.html</code> · FA_Onboarding_WIP · Email 1 of 4</p>
+  </div><div class="actions">
+    <a class="btn" href="launch-email-for-chris/course/jm-b1.html" target="_blank" rel="noopener">Open email</a>
+    <a class="btn" href="launch-email-for-chris/#course-jm-b1">Copy / download</a>
+  </div></div>
+  <div class="frame"><div class="fit"><iframe title="course jm-b1" data-src="launch-email-for-chris/course/jm-b1.html" loading="lazy" scrolling="no"></iframe><div class="fallback">If the email does not render here, <a href="launch-email-for-chris/course/jm-b1.html" target="_blank" rel="noopener">open JM-B1 directly</a>.</div></div></div>
+</article></div>
+<div class="node" id="regular-jm-b2"><div class="pin">2/4</div>
+<article class="email">
+  <div class="meta"><div>
+    <div class="row"><span class="num">JM-B2</span><span class="tierpill">Regular $99</span><span class="time">3 days before the session</span></div>
+    <div class="subject">Three days to your first class. Here’s how to prepare</div>
+    <p class="purpose"><b>Purpose:</b> What your first lesson covers, and the one thing to bring.</p>
+    <p class="eyebrow">In-email banner: Prepare For Class · What to bring to your live session · Timing source: email copy: “Three days to your first class”</p>
+    <p class="cta">Buttons: Open My Learning Platform / Explore The Culture Capsules</p>
+    <p class="src">File <code>launch-email-for-chris/course/jm-b2.html</code> · FA_Onboarding_WIP · Email 2 of 4</p>
+  </div><div class="actions">
+    <a class="btn" href="launch-email-for-chris/course/jm-b2.html" target="_blank" rel="noopener">Open email</a>
+    <a class="btn" href="launch-email-for-chris/#course-jm-b2">Copy / download</a>
+  </div></div>
+  <div class="frame"><div class="fit"><iframe title="course jm-b2" data-src="launch-email-for-chris/course/jm-b2.html" loading="lazy" scrolling="no"></iframe><div class="fallback">If the email does not render here, <a href="launch-email-for-chris/course/jm-b2.html" target="_blank" rel="noopener">open JM-B2 directly</a>.</div></div></div>
+</article></div>
+<div class="node" id="regular-jm-b3"><div class="pin">3/4</div>
+<article class="email">
+  <div class="meta"><div>
+    <div class="row"><span class="num">JM-B3</span><span class="tierpill">Regular $99</span><span class="time">24 hours before the session (day before)</span></div>
+    <div class="subject">Tomorrow: your first live lesson</div>
+    <p class="purpose"><b>Purpose:</b> Your course starts in 24 hours. Join through your learning platform.</p>
+    <p class="eyebrow">In-email banner: Tomorrow · Your course is approaching · Timing source: email copy: “Your course starts in 24 hours”</p>
+    <p class="cta">Button: Open My Learning Platform</p>
+    <p class="src">File <code>launch-email-for-chris/course/jm-b3.html</code> · FA_Onboarding_WIP · Email 3 of 4</p>
+  </div><div class="actions">
+    <a class="btn" href="launch-email-for-chris/course/jm-b3.html" target="_blank" rel="noopener">Open email</a>
+    <a class="btn" href="launch-email-for-chris/#course-jm-b3">Copy / download</a>
+  </div></div>
+  <div class="frame"><div class="fit"><iframe title="course jm-b3" data-src="launch-email-for-chris/course/jm-b3.html" loading="lazy" scrolling="no"></iframe><div class="fallback">If the email does not render here, <a href="launch-email-for-chris/course/jm-b3.html" target="_blank" rel="noopener">open JM-B3 directly</a>.</div></div></div>
+</article></div>
+<div class="node" id="regular-jm-b4"><div class="pin">4/4</div>
+<article class="email">
+  <div class="meta"><div>
+    <div class="row"><span class="num">JM-B4</span><span class="tierpill">Regular $99</span><span class="time">About 2 hours before the session</span></div>
+    <div class="subject">Starting in two hours</div>
+    <p class="purpose"><b>Purpose:</b> Sign in to your learning platform to join.</p>
+    <p class="eyebrow">In-email banner: Today · Final details for your first live lesson · Timing source: email copy: “starts in about two hours”</p>
+    <p class="cta">Button: Open My Learning Platform</p>
+    <p class="src">File <code>launch-email-for-chris/course/jm-b4.html</code> · FA_Onboarding_WIP · Email 4 of 4</p>
+  </div><div class="actions">
+    <a class="btn" href="launch-email-for-chris/course/jm-b4.html" target="_blank" rel="noopener">Open email</a>
+    <a class="btn" href="launch-email-for-chris/#course-jm-b4">Copy / download</a>
+  </div></div>
+  <div class="frame"><div class="fit"><iframe title="course jm-b4" data-src="launch-email-for-chris/course/jm-b4.html" loading="lazy" scrolling="no"></iframe><div class="fallback">If the email does not render here, <a href="launch-email-for-chris/course/jm-b4.html" target="_blank" rel="noopener">open JM-B4 directly</a>.</div></div></div>
+</article></div>
+</div>
+<div class="stage"><h3>After the session · attended</h3></div>
+<div class="phase skip" id="regular-u"><h4>VIP follow-up · 20% Capsule discount</h4><div class="note">Not sent to Regular $99 buyers. The four post-session follow-ups (u1–u4, 20% Capsule discount, code CAPSULE20) are VIP-only — Chris, Teams; see <a href="launch-email-for-chris/README.md">README</a>.</div></div>
+<div class="stage"><h3>After the session · missed</h3></div>
+<div class="phase" id="regular-x"><h4>No-show buyers</h4><p class="trig">Paid, did not attend — the attendance record shows the buyer was not in the class.</p><p class="auto">ActiveCampaign automation <code>FA_No-Show Buyers_WIP</code> · 3 emails · sent in this order</p>
+<div class="node" id="regular-jm-x1"><div class="pin">1/3</div>
+<article class="email">
+  <div class="meta"><div>
+    <div class="row"><span class="num">JM-X1</span><span class="tierpill">Regular $99</span><span class="time tbd">After the session, attendance record = not in the class · email 1 of 3 · delay per Chris&#x27;s automation</span></div>
+    <div class="subject">We missed you, %FIRSTNAME%</div>
+    <p class="purpose"><b>Purpose:</b> You were not in the class. Here is where things stand, and how to reach us.</p>
+    <p class="eyebrow">In-email banner: Session Missed · Here is where things stand · Timing source: email copy: “Our attendance record shows you were not in the class”</p>
+    <p class="cta">Button: Open My Learning Platform</p>
+    <p class="src">File <code>launch-email-for-chris/course/jm-x1.html</code> · FA_No-Show Buyers_WIP · Email 1 of 3</p>
+  </div><div class="actions">
+    <a class="btn" href="launch-email-for-chris/course/jm-x1.html" target="_blank" rel="noopener">Open email</a>
+    <a class="btn" href="launch-email-for-chris/#course-jm-x1">Copy / download</a>
+  </div></div>
+  <div class="frame"><div class="fit"><iframe title="course jm-x1" data-src="launch-email-for-chris/course/jm-x1.html" loading="lazy" scrolling="no"></iframe><div class="fallback">If the email does not render here, <a href="launch-email-for-chris/course/jm-x1.html" target="_blank" rel="noopener">open JM-X1 directly</a>.</div></div></div>
+</article></div>
+<div class="node" id="regular-jm-x2"><div class="pin">2/3</div>
+<article class="email">
+  <div class="meta"><div>
+    <div class="row"><span class="num">JM-X2</span><span class="tierpill">Regular $99</span><span class="time tbd">After the session, attendance record = not in the class · email 2 of 3 · delay per Chris&#x27;s automation</span></div>
+    <div class="subject">Your course information, %FIRSTNAME%</div>
+    <p class="purpose"><b>Purpose:</b> Where to find your first lesson information and materials, and how to reach us.</p>
+    <p class="eyebrow">In-email banner: Follow-Up · Your learning platform and how to reach us · Timing source: email copy: “Our attendance record shows you were not in the class”</p>
+    <p class="cta">Button: Open My Learning Platform</p>
+    <p class="src">File <code>launch-email-for-chris/course/jm-x2.html</code> · FA_No-Show Buyers_WIP · Email 2 of 3</p>
+  </div><div class="actions">
+    <a class="btn" href="launch-email-for-chris/course/jm-x2.html" target="_blank" rel="noopener">Open email</a>
+    <a class="btn" href="launch-email-for-chris/#course-jm-x2">Copy / download</a>
+  </div></div>
+  <div class="frame"><div class="fit"><iframe title="course jm-x2" data-src="launch-email-for-chris/course/jm-x2.html" loading="lazy" scrolling="no"></iframe><div class="fallback">If the email does not render here, <a href="launch-email-for-chris/course/jm-x2.html" target="_blank" rel="noopener">open JM-X2 directly</a>.</div></div></div>
+</article></div>
+<div class="node" id="regular-jm-x3"><div class="pin">3/3</div>
+<article class="email">
+  <div class="meta"><div>
+    <div class="row"><span class="num">JM-X3</span><span class="tierpill">Regular $99</span><span class="time tbd">After the session, attendance record = not in the class · email 3 of 3 · delay per Chris&#x27;s automation</span></div>
+    <div class="subject">Still here if you need us, %FIRSTNAME%</div>
+    <p class="purpose"><b>Purpose:</b> A final follow-up on your missed session, and how to reach us.</p>
+    <p class="eyebrow">In-email banner: Final Follow-Up · Reply if you need help with your booking · Timing source: email copy: “Our attendance record shows you were not in the class”</p>
+    <p class="cta">Button: Open My Learning Platform</p>
+    <p class="src">File <code>launch-email-for-chris/course/jm-x3.html</code> · FA_No-Show Buyers_WIP · Email 3 of 3</p>
+  </div><div class="actions">
+    <a class="btn" href="launch-email-for-chris/course/jm-x3.html" target="_blank" rel="noopener">Open email</a>
+    <a class="btn" href="launch-email-for-chris/#course-jm-x3">Copy / download</a>
+  </div></div>
+  <div class="frame"><div class="fit"><iframe title="course jm-x3" data-src="launch-email-for-chris/course/jm-x3.html" loading="lazy" scrolling="no"></iframe><div class="fallback">If the email does not render here, <a href="launch-email-for-chris/course/jm-x3.html" target="_blank" rel="noopener">open JM-X3 directly</a>.</div></div></div>
+</article></div>
+</div>
+</section>
+<section class="segment" id="vip" style="--c:#F5C451">
+<div class="seghead"><div>
+  <span class="tier">Segment · VIP</span>
+  <h2>VIP · The French Atelier Live Course · VIP Experience</h2>
+  <p class="price">$1,460, one payment <span style="color:var(--muted);font-size:28px;font-weight:600;display:block;margin-top:6px">· 20 emails · 6 automations</span></p>
+  <p class="label">Who enters and how</p>
+  <p>Buyer of the 90-minute VIP session: 60-minute course + private 30-minute Q&amp;A with your teacher. Enters the abandoned-cart automations by dropping out of the $1,460 checkout; onboarding on purchase; VIP follow-up after attending; no-show if not in the class.</p>
+</div><div>
+  <p class="label">Segment facts (FACTS.md)</p>
+  <ul><li>90 minutes total: 60-minute course + private 30-minute Q&amp;A</li><li>20% off your first Culture Capsule toward The Culture Capsules · code CAPSULE20</li><li>Blueprint: $179 × 5 · 14-day refund from registration (course only)</li><li>Bring questions for the Q&amp;A (b1–b4)</li></ul>
+</div></div>
+<div class="summary"><h3>Summary · VIP $1,460 · email # · timing · subject · purpose</h3><table><thead><tr><th>Email #</th><th>Send timing</th><th>Subject line</th><th>Purpose (preheader)</th></tr></thead><tbody>
+<tr class="ph"><td colspan="4">Before purchase · Abandoned cart · Name Details (checkout screen 1) · <span style="color:var(--muted)">FA_Abandoned_Cart_Name_Details</span></td></tr>
+<tr><td class="num"><a href="#vip-jm-a1-1">JM-A1-1</a><br><span style="color:var(--muted);font-weight:500;font-size:20px">Email 1 of 3</span></td><td class="tm tbd">After dropout at checkout screen 1 (name details) · email 1 of 3 · delay per Chris&#x27;s automation</td><td class="sub">One step left: choose your VIP session date</td><td class="pur">Your details are saved. Pick your live date with your teacher and your VIP seat is set.</td></tr>
+<tr><td class="num"><a href="#vip-jm-a1-2">JM-A1-2</a><br><span style="color:var(--muted);font-weight:500;font-size:20px">Email 2 of 3</span></td><td class="tm tbd">After dropout at checkout screen 1 (name details) · email 2 of 3 · delay per Chris&#x27;s automation</td><td class="sub">Who is teaching you: a certified native French teacher</td><td class="pur">Certified native teachers, the Acadomia method, and the level you still need to choose.</td></tr>
+<tr><td class="num"><a href="#vip-jm-a1-3">JM-A1-3</a><br><span style="color:var(--muted);font-weight:500;font-size:20px">Email 3 of 3</span></td><td class="tm tbd">After dropout at checkout screen 1 (name details) · email 3 of 3 · delay per Chris&#x27;s automation</td><td class="sub">Still choosing a date? VIP seats are limited</td><td class="pur">Your details are saved. Choose your live date soon, while VIP seats remain.</td></tr>
+<tr class="ph"><td colspan="4">Before purchase · Abandoned cart · Course Details (checkout screen 2, date) · <span style="color:var(--muted)">FA_Abandoned_Cart_Course_Details</span></td></tr>
+<tr><td class="num"><a href="#vip-jm-a2-1">JM-A2-1</a><br><span style="color:var(--muted);font-weight:500;font-size:20px">Email 1 of 3</span></td><td class="tm tbd">After dropout at checkout screen 2 (date chosen) · email 1 of 3 · delay per Chris&#x27;s automation</td><td class="sub">Your VIP date is chosen. One step finishes booking</td><td class="pur">You picked %FACOURSESTARTDATE%. Finish your booking and the VIP seat is yours.</td></tr>
+<tr><td class="num"><a href="#vip-jm-a2-2">JM-A2-2</a><br><span style="color:var(--muted);font-weight:500;font-size:20px">Email 2 of 3</span></td><td class="tm tbd">After dropout at checkout screen 2 (date chosen) · email 2 of 3 · delay per Chris&#x27;s automation</td><td class="sub">Live, not a recording: finish your VIP booking</td><td class="pur">Live from France from %FACOURSESTARTDATE%. Finish booking in a minute.</td></tr>
+<tr><td class="num"><a href="#vip-jm-a2-3">JM-A2-3</a><br><span style="color:var(--muted);font-weight:500;font-size:20px">Email 3 of 3</span></td><td class="tm tbd">After dropout at checkout screen 2 (date chosen) · email 3 of 3 · delay per Chris&#x27;s automation</td><td class="sub">Finish your VIP booking soon, %FIRSTNAME%</td><td class="pur">A last note about the VIP session you chose. Booking takes a minute.</td></tr>
+<tr class="ph"><td colspan="4">Before purchase · Abandoned cart · No Payment (payment page) · <span style="color:var(--muted)">FA_Abandoned_Cart_No_Payment</span></td></tr>
+<tr><td class="num"><a href="#vip-jm-a3-1">JM-A3-1</a><br><span style="color:var(--muted);font-weight:500;font-size:20px">Email 1 of 3</span></td><td class="tm tbd">After dropout at the payment page · email 1 of 3 · delay per Chris&#x27;s automation</td><td class="sub">Your VIP order is set up. Complete your payment</td><td class="pur">Order and date saved, nothing charged. Payment takes about a minute.</td></tr>
+<tr><td class="num"><a href="#vip-jm-a3-2">JM-A3-2</a><br><span style="color:var(--muted);font-weight:500;font-size:20px">Email 2 of 3</span></td><td class="tm tbd">After dropout at the payment page · email 2 of 3 · delay per Chris&#x27;s automation</td><td class="sub">One minute completes your VIP order, %FIRSTNAME%</td><td class="pur">Your order and date are saved; only the payment is missing. Card or PayPal, about a minute.</td></tr>
+<tr><td class="num"><a href="#vip-jm-a3-3">JM-A3-3</a><br><span style="color:var(--muted);font-weight:500;font-size:20px">Email 3 of 3</span></td><td class="tm tbd">After dropout at the payment page · email 3 of 3 · delay per Chris&#x27;s automation</td><td class="sub">Complete your VIP order soon, %FIRSTNAME%</td><td class="pur">A last note about the enrollment you set up. Nothing charged yet; payment takes a minute.</td></tr>
+<tr class="ph"><td colspan="4">After purchase · Onboarding · after purchase · <span style="color:var(--muted)">FA_Onboarding_WIP</span></td></tr>
+<tr><td class="num"><a href="#vip-jm-b1">JM-B1</a><br><span style="color:var(--muted);font-weight:500;font-size:20px">Email 1 of 4</span></td><td class="tm tbd">After purchase · seat confirmation · exact delay per Chris&#x27;s automation</td><td class="sub">Your VIP seat is confirmed. Here’s what’s next</td><td class="pur">Your VIP seat is confirmed. Your learning platform is ready; bring questions for the Q&amp;A.</td></tr>
+<tr><td class="num"><a href="#vip-jm-b2">JM-B2</a><br><span style="color:var(--muted);font-weight:500;font-size:20px">Email 2 of 4</span></td><td class="tm">3 days before the session</td><td class="sub">Three days to your first class. Here’s how to prepare</td><td class="pur">What your teacher will cover, and the questions to bring for your private Q&amp;A.</td></tr>
+<tr><td class="num"><a href="#vip-jm-b3">JM-B3</a><br><span style="color:var(--muted);font-weight:500;font-size:20px">Email 3 of 4</span></td><td class="tm">24 hours before the session (day before)</td><td class="sub">Tomorrow: your live VIP session with your teacher</td><td class="pur">Starts in 24 hours. Join via your learning platform; bring questions.</td></tr>
+<tr><td class="num"><a href="#vip-jm-b4">JM-B4</a><br><span style="color:var(--muted);font-weight:500;font-size:20px">Email 4 of 4</span></td><td class="tm">About 2 hours before the session</td><td class="sub">Starting in two hours</td><td class="pur">Sign in to your learning platform to join.</td></tr>
+<tr class="ph"><td colspan="4">After the session · attended · VIP follow-up · 20% Capsule discount · <span style="color:var(--muted)">FA_Onboarding_WIP (VIP follow-up)</span></td></tr>
+<tr><td class="num"><a href="#vip-jm-u1">JM-U1</a><br><span style="color:var(--muted);font-weight:500;font-size:20px">Email 1 of 4</span></td><td class="tm tbd">After attending the session · email 1 of 4 · delay per Chris&#x27;s automation</td><td class="sub">Thank you, %FIRSTNAME%. Your 20% off your first Culture Capsule is ready</td><td class="pur">Your VIP credit toward The Culture Capsules, code CAPSULE20, applied through the button.</td></tr>
+<tr><td class="num"><a href="#vip-jm-u2">JM-U2</a><br><span style="color:var(--muted);font-weight:500;font-size:20px">Email 2 of 4</span></td><td class="tm tbd">After attending the session · email 2 of 4 · delay per Chris&#x27;s automation</td><td class="sub">What the course couldn’t fit into 90 minutes</td><td class="pur">Inside the Culture Capsules, and what changes when you take it.</td></tr>
+<tr><td class="num"><a href="#vip-jm-u3">JM-U3</a><br><span style="color:var(--muted);font-weight:500;font-size:20px">Email 3 of 4</span></td><td class="tm tbd">After attending the session · email 3 of 4 · delay per Chris&#x27;s automation</td><td class="sub">The Blueprint, in numbers</td><td class="pur">What it costs, what your 20% off your first Culture Capsule changes, and the 14-day refund.</td></tr>
+<tr><td class="num"><a href="#vip-jm-u4">JM-U4</a><br><span style="color:var(--muted);font-weight:500;font-size:20px">Email 4 of 4</span></td><td class="tm tbd">After attending the session · email 4 of 4 · delay per Chris&#x27;s automation</td><td class="sub">Your 20% off your first Culture Capsule, and a person to talk to</td><td class="pur">A next step to explore soon, and a real person to talk it through with.</td></tr>
+<tr class="ph"><td colspan="4">After the session · missed · No-show buyers · <span style="color:var(--muted)">FA_No-Show Buyers_WIP</span></td></tr>
+<tr><td class="num"><a href="#vip-jm-x1">JM-X1</a><br><span style="color:var(--muted);font-weight:500;font-size:20px">Email 1 of 3</span></td><td class="tm tbd">After the session, attendance record = not in the class · email 1 of 3 · delay per Chris&#x27;s automation</td><td class="sub">We missed you, %FIRSTNAME%</td><td class="pur">You were not in the class. Here is where things stand, and how to reach us.</td></tr>
+<tr><td class="num"><a href="#vip-jm-x2">JM-X2</a><br><span style="color:var(--muted);font-weight:500;font-size:20px">Email 2 of 3</span></td><td class="tm tbd">After the session, attendance record = not in the class · email 2 of 3 · delay per Chris&#x27;s automation</td><td class="sub">Your course information, %FIRSTNAME%</td><td class="pur">Where to find your first lesson information and materials, and how to reach us.</td></tr>
+<tr><td class="num"><a href="#vip-jm-x3">JM-X3</a><br><span style="color:var(--muted);font-weight:500;font-size:20px">Email 3 of 3</span></td><td class="tm tbd">After the session, attendance record = not in the class · email 3 of 3 · delay per Chris&#x27;s automation</td><td class="sub">Still here if you need us, %FIRSTNAME%</td><td class="pur">A final follow-up on your missed session, and how to reach us.</td></tr>
+</tbody></table></div>
+<div class="stage"><h3>Before purchase</h3></div>
+<div class="phase" id="vip-a1"><h4>Abandoned cart · Name Details (checkout screen 1)</h4><p class="trig">Enters when a visitor drops out at checkout screen 1 (name details) without choosing a session date.</p><p class="auto">ActiveCampaign automation <code>FA_Abandoned_Cart_Name_Details</code> · 3 emails · sent in this order</p>
+<div class="node" id="vip-jm-a1-1"><div class="pin">1/3</div>
+<article class="email">
+  <div class="meta"><div>
+    <div class="row"><span class="num">JM-A1-1</span><span class="tierpill">VIP $1,460</span><span class="time tbd">After dropout at checkout screen 1 (name details) · email 1 of 3 · delay per Chris&#x27;s automation</span></div>
+    <div class="subject">One step left: choose your VIP session date</div>
+    <p class="purpose"><b>Purpose:</b> Your details are saved. Pick your live date with your teacher and your VIP seat is set.</p>
+    <p class="eyebrow">In-email banner: Almost There · Your details are saved. Next: choose your level · Timing source: README.md funnel description</p>
+    <p class="cta">Button: Choose My Level</p>
+    <p class="src">File <code>launch-email-for-chris/vip-course/jm-a1-1.html</code> · FA_Abandoned_Cart_Name_Details · Email 1 of 3</p>
+  </div><div class="actions">
+    <a class="btn" href="launch-email-for-chris/vip-course/jm-a1-1.html" target="_blank" rel="noopener">Open email</a>
+    <a class="btn" href="launch-email-for-chris/#vip-course-jm-a1-1">Copy / download</a>
+  </div></div>
+  <div class="frame"><div class="fit"><iframe title="vip-course jm-a1-1" data-src="launch-email-for-chris/vip-course/jm-a1-1.html" loading="lazy" scrolling="no"></iframe><div class="fallback">If the email does not render here, <a href="launch-email-for-chris/vip-course/jm-a1-1.html" target="_blank" rel="noopener">open JM-A1-1 directly</a>.</div></div></div>
+</article></div>
+<div class="node" id="vip-jm-a1-2"><div class="pin">2/3</div>
+<article class="email">
+  <div class="meta"><div>
+    <div class="row"><span class="num">JM-A1-2</span><span class="tierpill">VIP $1,460</span><span class="time tbd">After dropout at checkout screen 1 (name details) · email 2 of 3 · delay per Chris&#x27;s automation</span></div>
+    <div class="subject">Who is teaching you: a certified native French teacher</div>
+    <p class="purpose"><b>Purpose:</b> Certified native teachers, the Acadomia method, and the level you still need to choose.</p>
+    <p class="eyebrow">In-email banner: Verified Results · Ranked No. 1 in France · Timing source: README.md funnel description</p>
+    <p class="cta">Button: Choose My Level</p>
+    <p class="src">File <code>launch-email-for-chris/vip-course/jm-a1-2.html</code> · FA_Abandoned_Cart_Name_Details · Email 2 of 3</p>
+  </div><div class="actions">
+    <a class="btn" href="launch-email-for-chris/vip-course/jm-a1-2.html" target="_blank" rel="noopener">Open email</a>
+    <a class="btn" href="launch-email-for-chris/#vip-course-jm-a1-2">Copy / download</a>
+  </div></div>
+  <div class="frame"><div class="fit"><iframe title="vip-course jm-a1-2" data-src="launch-email-for-chris/vip-course/jm-a1-2.html" loading="lazy" scrolling="no"></iframe><div class="fallback">If the email does not render here, <a href="launch-email-for-chris/vip-course/jm-a1-2.html" target="_blank" rel="noopener">open JM-A1-2 directly</a>.</div></div></div>
+</article></div>
+<div class="node" id="vip-jm-a1-3"><div class="pin">3/3</div>
+<article class="email">
+  <div class="meta"><div>
+    <div class="row"><span class="num">JM-A1-3</span><span class="tierpill">VIP $1,460</span><span class="time tbd">After dropout at checkout screen 1 (name details) · email 3 of 3 · delay per Chris&#x27;s automation</span></div>
+    <div class="subject">Still choosing a date? VIP seats are limited</div>
+    <p class="purpose"><b>Purpose:</b> Your details are saved. Choose your live date soon, while VIP seats remain.</p>
+    <p class="eyebrow">In-email banner: Final Reminder · Choose your level soon · Timing source: README.md funnel description</p>
+    <p class="cta">Button: Choose My Level</p>
+    <p class="src">File <code>launch-email-for-chris/vip-course/jm-a1-3.html</code> · FA_Abandoned_Cart_Name_Details · Email 3 of 3</p>
+  </div><div class="actions">
+    <a class="btn" href="launch-email-for-chris/vip-course/jm-a1-3.html" target="_blank" rel="noopener">Open email</a>
+    <a class="btn" href="launch-email-for-chris/#vip-course-jm-a1-3">Copy / download</a>
+  </div></div>
+  <div class="frame"><div class="fit"><iframe title="vip-course jm-a1-3" data-src="launch-email-for-chris/vip-course/jm-a1-3.html" loading="lazy" scrolling="no"></iframe><div class="fallback">If the email does not render here, <a href="launch-email-for-chris/vip-course/jm-a1-3.html" target="_blank" rel="noopener">open JM-A1-3 directly</a>.</div></div></div>
+</article></div>
+</div>
+<div class="phase" id="vip-a2"><h4>Abandoned cart · Course Details (checkout screen 2, date)</h4><p class="trig">Enters when the date is chosen but the booking is not finished (checkout screen 2).</p><p class="auto">ActiveCampaign automation <code>FA_Abandoned_Cart_Course_Details</code> · 3 emails · sent in this order</p>
+<div class="node" id="vip-jm-a2-1"><div class="pin">1/3</div>
+<article class="email">
+  <div class="meta"><div>
+    <div class="row"><span class="num">JM-A2-1</span><span class="tierpill">VIP $1,460</span><span class="time tbd">After dropout at checkout screen 2 (date chosen) · email 1 of 3 · delay per Chris&#x27;s automation</span></div>
+    <div class="subject">Your VIP date is chosen. One step finishes booking</div>
+    <p class="purpose"><b>Purpose:</b> You picked %FACOURSESTARTDATE%. Finish your booking and the VIP seat is yours.</p>
+    <p class="eyebrow">In-email banner: Almost Booked · Your level is chosen; one step remains · Timing source: README.md funnel description</p>
+    <p class="cta">Button: Finish My Booking</p>
+    <p class="src">File <code>launch-email-for-chris/vip-course/jm-a2-1.html</code> · FA_Abandoned_Cart_Course_Details · Email 1 of 3</p>
+  </div><div class="actions">
+    <a class="btn" href="launch-email-for-chris/vip-course/jm-a2-1.html" target="_blank" rel="noopener">Open email</a>
+    <a class="btn" href="launch-email-for-chris/#vip-course-jm-a2-1">Copy / download</a>
+  </div></div>
+  <div class="frame"><div class="fit"><iframe title="vip-course jm-a2-1" data-src="launch-email-for-chris/vip-course/jm-a2-1.html" loading="lazy" scrolling="no"></iframe><div class="fallback">If the email does not render here, <a href="launch-email-for-chris/vip-course/jm-a2-1.html" target="_blank" rel="noopener">open JM-A2-1 directly</a>.</div></div></div>
+</article></div>
+<div class="node" id="vip-jm-a2-2"><div class="pin">2/3</div>
+<article class="email">
+  <div class="meta"><div>
+    <div class="row"><span class="num">JM-A2-2</span><span class="tierpill">VIP $1,460</span><span class="time tbd">After dropout at checkout screen 2 (date chosen) · email 2 of 3 · delay per Chris&#x27;s automation</span></div>
+    <div class="subject">Live, not a recording: finish your VIP booking</div>
+    <p class="purpose"><b>Purpose:</b> Live from France from %FACOURSESTARTDATE%. Finish booking in a minute.</p>
+    <p class="eyebrow">In-email banner: Live On Zoom · 90 minutes with your teacher, questions answered live · Timing source: README.md funnel description</p>
+    <p class="cta">Button: Finish My Booking</p>
+    <p class="src">File <code>launch-email-for-chris/vip-course/jm-a2-2.html</code> · FA_Abandoned_Cart_Course_Details · Email 2 of 3</p>
+  </div><div class="actions">
+    <a class="btn" href="launch-email-for-chris/vip-course/jm-a2-2.html" target="_blank" rel="noopener">Open email</a>
+    <a class="btn" href="launch-email-for-chris/#vip-course-jm-a2-2">Copy / download</a>
+  </div></div>
+  <div class="frame"><div class="fit"><iframe title="vip-course jm-a2-2" data-src="launch-email-for-chris/vip-course/jm-a2-2.html" loading="lazy" scrolling="no"></iframe><div class="fallback">If the email does not render here, <a href="launch-email-for-chris/vip-course/jm-a2-2.html" target="_blank" rel="noopener">open JM-A2-2 directly</a>.</div></div></div>
+</article></div>
+<div class="node" id="vip-jm-a2-3"><div class="pin">3/3</div>
+<article class="email">
+  <div class="meta"><div>
+    <div class="row"><span class="num">JM-A2-3</span><span class="tierpill">VIP $1,460</span><span class="time tbd">After dropout at checkout screen 2 (date chosen) · email 3 of 3 · delay per Chris&#x27;s automation</span></div>
+    <div class="subject">Finish your VIP booking soon, %FIRSTNAME%</div>
+    <p class="purpose"><b>Purpose:</b> A last note about the VIP session you chose. Booking takes a minute.</p>
+    <p class="eyebrow">In-email banner: Last Note · Finish your booking soon · Timing source: README.md funnel description</p>
+    <p class="cta">Button: Finish My Booking</p>
+    <p class="src">File <code>launch-email-for-chris/vip-course/jm-a2-3.html</code> · FA_Abandoned_Cart_Course_Details · Email 3 of 3</p>
+  </div><div class="actions">
+    <a class="btn" href="launch-email-for-chris/vip-course/jm-a2-3.html" target="_blank" rel="noopener">Open email</a>
+    <a class="btn" href="launch-email-for-chris/#vip-course-jm-a2-3">Copy / download</a>
+  </div></div>
+  <div class="frame"><div class="fit"><iframe title="vip-course jm-a2-3" data-src="launch-email-for-chris/vip-course/jm-a2-3.html" loading="lazy" scrolling="no"></iframe><div class="fallback">If the email does not render here, <a href="launch-email-for-chris/vip-course/jm-a2-3.html" target="_blank" rel="noopener">open JM-A2-3 directly</a>.</div></div></div>
+</article></div>
+</div>
+<div class="phase" id="vip-a3"><h4>Abandoned cart · No Payment (payment page)</h4><p class="trig">Enters when the order and date are set up but payment is not completed.</p><p class="auto">ActiveCampaign automation <code>FA_Abandoned_Cart_No_Payment</code> · 3 emails · sent in this order</p>
+<div class="node" id="vip-jm-a3-1"><div class="pin">1/3</div>
+<article class="email">
+  <div class="meta"><div>
+    <div class="row"><span class="num">JM-A3-1</span><span class="tierpill">VIP $1,460</span><span class="time tbd">After dropout at the payment page · email 1 of 3 · delay per Chris&#x27;s automation</span></div>
+    <div class="subject">Your VIP order is set up. Complete your payment</div>
+    <p class="purpose"><b>Purpose:</b> Order and date saved, nothing charged. Payment takes about a minute.</p>
+    <p class="eyebrow">In-email banner: Payment Not Completed · Your order is set up; nothing has been charged · Timing source: README.md funnel description</p>
+    <p class="cta">Button: Complete My Order</p>
+    <p class="src">File <code>launch-email-for-chris/vip-course/jm-a3-1.html</code> · FA_Abandoned_Cart_No_Payment · Email 1 of 3</p>
+  </div><div class="actions">
+    <a class="btn" href="launch-email-for-chris/vip-course/jm-a3-1.html" target="_blank" rel="noopener">Open email</a>
+    <a class="btn" href="launch-email-for-chris/#vip-course-jm-a3-1">Copy / download</a>
+  </div></div>
+  <div class="frame"><div class="fit"><iframe title="vip-course jm-a3-1" data-src="launch-email-for-chris/vip-course/jm-a3-1.html" loading="lazy" scrolling="no"></iframe><div class="fallback">If the email does not render here, <a href="launch-email-for-chris/vip-course/jm-a3-1.html" target="_blank" rel="noopener">open JM-A3-1 directly</a>.</div></div></div>
+</article></div>
+<div class="node" id="vip-jm-a3-2"><div class="pin">2/3</div>
+<article class="email">
+  <div class="meta"><div>
+    <div class="row"><span class="num">JM-A3-2</span><span class="tierpill">VIP $1,460</span><span class="time tbd">After dropout at the payment page · email 2 of 3 · delay per Chris&#x27;s automation</span></div>
+    <div class="subject">One minute completes your VIP order, %FIRSTNAME%</div>
+    <p class="purpose"><b>Purpose:</b> Your order and date are saved; only the payment is missing. Card or PayPal, about a minute.</p>
+    <p class="eyebrow">In-email banner: What You Receive · The full VIP course, one payment of $1,460 · Timing source: README.md funnel description</p>
+    <p class="cta">Button: Complete My Order</p>
+    <p class="src">File <code>launch-email-for-chris/vip-course/jm-a3-2.html</code> · FA_Abandoned_Cart_No_Payment · Email 2 of 3</p>
+  </div><div class="actions">
+    <a class="btn" href="launch-email-for-chris/vip-course/jm-a3-2.html" target="_blank" rel="noopener">Open email</a>
+    <a class="btn" href="launch-email-for-chris/#vip-course-jm-a3-2">Copy / download</a>
+  </div></div>
+  <div class="frame"><div class="fit"><iframe title="vip-course jm-a3-2" data-src="launch-email-for-chris/vip-course/jm-a3-2.html" loading="lazy" scrolling="no"></iframe><div class="fallback">If the email does not render here, <a href="launch-email-for-chris/vip-course/jm-a3-2.html" target="_blank" rel="noopener">open JM-A3-2 directly</a>.</div></div></div>
+</article></div>
+<div class="node" id="vip-jm-a3-3"><div class="pin">3/3</div>
+<article class="email">
+  <div class="meta"><div>
+    <div class="row"><span class="num">JM-A3-3</span><span class="tierpill">VIP $1,460</span><span class="time tbd">After dropout at the payment page · email 3 of 3 · delay per Chris&#x27;s automation</span></div>
+    <div class="subject">Complete your VIP order soon, %FIRSTNAME%</div>
+    <p class="purpose"><b>Purpose:</b> A last note about the enrollment you set up. Nothing charged yet; payment takes a minute.</p>
+    <p class="eyebrow">In-email banner: Last Note · Complete payment soon to book your VIP seat · Timing source: README.md funnel description</p>
+    <p class="cta">Button: Complete My Order</p>
+    <p class="src">File <code>launch-email-for-chris/vip-course/jm-a3-3.html</code> · FA_Abandoned_Cart_No_Payment · Email 3 of 3</p>
+  </div><div class="actions">
+    <a class="btn" href="launch-email-for-chris/vip-course/jm-a3-3.html" target="_blank" rel="noopener">Open email</a>
+    <a class="btn" href="launch-email-for-chris/#vip-course-jm-a3-3">Copy / download</a>
+  </div></div>
+  <div class="frame"><div class="fit"><iframe title="vip-course jm-a3-3" data-src="launch-email-for-chris/vip-course/jm-a3-3.html" loading="lazy" scrolling="no"></iframe><div class="fallback">If the email does not render here, <a href="launch-email-for-chris/vip-course/jm-a3-3.html" target="_blank" rel="noopener">open JM-A3-3 directly</a>.</div></div></div>
+</article></div>
+</div>
+<div class="stage"><h3>After purchase</h3></div>
+<div class="phase" id="vip-b"><h4>Onboarding · after purchase</h4><p class="trig">Enters on purchase of the seat. Confirmation, then a preparation note, a reminder the day before, and one two hours before the session (cadence stated in the emails).</p><p class="auto">ActiveCampaign automation <code>FA_Onboarding_WIP</code> · 4 emails · sent in this order</p>
+<div class="node" id="vip-jm-b1"><div class="pin">1/4</div>
+<article class="email">
+  <div class="meta"><div>
+    <div class="row"><span class="num">JM-B1</span><span class="tierpill">VIP $1,460</span><span class="time tbd">After purchase · seat confirmation · exact delay per Chris&#x27;s automation</span></div>
+    <div class="subject">Your VIP seat is confirmed. Here’s what’s next</div>
+    <p class="purpose"><b>Purpose:</b> Your VIP seat is confirmed. Your learning platform is ready; bring questions for the Q&amp;A.</p>
+    <p class="eyebrow">In-email banner: VIP Seat Confirmed · Your learning platform is ready · Timing source: email copy: “Your seat is confirmed”</p>
+    <p class="cta">Buttons: Open My Learning Platform / Use My $249 Blueprint Credit</p>
+    <p class="src">File <code>launch-email-for-chris/vip-course/jm-b1.html</code> · FA_Onboarding_WIP · Email 1 of 4</p>
+  </div><div class="actions">
+    <a class="btn" href="launch-email-for-chris/vip-course/jm-b1.html" target="_blank" rel="noopener">Open email</a>
+    <a class="btn" href="launch-email-for-chris/#vip-course-jm-b1">Copy / download</a>
+  </div></div>
+  <div class="frame"><div class="fit"><iframe title="vip-course jm-b1" data-src="launch-email-for-chris/vip-course/jm-b1.html" loading="lazy" scrolling="no"></iframe><div class="fallback">If the email does not render here, <a href="launch-email-for-chris/vip-course/jm-b1.html" target="_blank" rel="noopener">open JM-B1 directly</a>.</div></div></div>
+</article></div>
+<div class="node" id="vip-jm-b2"><div class="pin">2/4</div>
+<article class="email">
+  <div class="meta"><div>
+    <div class="row"><span class="num">JM-B2</span><span class="tierpill">VIP $1,460</span><span class="time">3 days before the session</span></div>
+    <div class="subject">Three days to your first class. Here’s how to prepare</div>
+    <p class="purpose"><b>Purpose:</b> What your teacher will cover, and the questions to bring for your private Q&amp;A.</p>
+    <p class="eyebrow">In-email banner: Prepare For Class · What to bring to your VIP session · Timing source: email copy: “Three days to your first class”</p>
+    <p class="cta">Buttons: Open My Learning Platform / Use My $249 Blueprint Credit</p>
+    <p class="src">File <code>launch-email-for-chris/vip-course/jm-b2.html</code> · FA_Onboarding_WIP · Email 2 of 4</p>
+  </div><div class="actions">
+    <a class="btn" href="launch-email-for-chris/vip-course/jm-b2.html" target="_blank" rel="noopener">Open email</a>
+    <a class="btn" href="launch-email-for-chris/#vip-course-jm-b2">Copy / download</a>
+  </div></div>
+  <div class="frame"><div class="fit"><iframe title="vip-course jm-b2" data-src="launch-email-for-chris/vip-course/jm-b2.html" loading="lazy" scrolling="no"></iframe><div class="fallback">If the email does not render here, <a href="launch-email-for-chris/vip-course/jm-b2.html" target="_blank" rel="noopener">open JM-B2 directly</a>.</div></div></div>
+</article></div>
+<div class="node" id="vip-jm-b3"><div class="pin">3/4</div>
+<article class="email">
+  <div class="meta"><div>
+    <div class="row"><span class="num">JM-B3</span><span class="tierpill">VIP $1,460</span><span class="time">24 hours before the session (day before)</span></div>
+    <div class="subject">Tomorrow: your live VIP session with your teacher</div>
+    <p class="purpose"><b>Purpose:</b> Starts in 24 hours. Join via your learning platform; bring questions.</p>
+    <p class="eyebrow">In-email banner: Tomorrow · Your course is approaching · Timing source: email copy: “Your course starts in 24 hours”</p>
+    <p class="cta">Button: Open My Learning Platform</p>
+    <p class="src">File <code>launch-email-for-chris/vip-course/jm-b3.html</code> · FA_Onboarding_WIP · Email 3 of 4</p>
+  </div><div class="actions">
+    <a class="btn" href="launch-email-for-chris/vip-course/jm-b3.html" target="_blank" rel="noopener">Open email</a>
+    <a class="btn" href="launch-email-for-chris/#vip-course-jm-b3">Copy / download</a>
+  </div></div>
+  <div class="frame"><div class="fit"><iframe title="vip-course jm-b3" data-src="launch-email-for-chris/vip-course/jm-b3.html" loading="lazy" scrolling="no"></iframe><div class="fallback">If the email does not render here, <a href="launch-email-for-chris/vip-course/jm-b3.html" target="_blank" rel="noopener">open JM-B3 directly</a>.</div></div></div>
+</article></div>
+<div class="node" id="vip-jm-b4"><div class="pin">4/4</div>
+<article class="email">
+  <div class="meta"><div>
+    <div class="row"><span class="num">JM-B4</span><span class="tierpill">VIP $1,460</span><span class="time">About 2 hours before the session</span></div>
+    <div class="subject">Starting in two hours</div>
+    <p class="purpose"><b>Purpose:</b> Sign in to your learning platform to join.</p>
+    <p class="eyebrow">In-email banner: Today · Final details for your VIP course · Timing source: email copy: “starts in about two hours”</p>
+    <p class="cta">Button: Open My Learning Platform</p>
+    <p class="src">File <code>launch-email-for-chris/vip-course/jm-b4.html</code> · FA_Onboarding_WIP · Email 4 of 4</p>
+  </div><div class="actions">
+    <a class="btn" href="launch-email-for-chris/vip-course/jm-b4.html" target="_blank" rel="noopener">Open email</a>
+    <a class="btn" href="launch-email-for-chris/#vip-course-jm-b4">Copy / download</a>
+  </div></div>
+  <div class="frame"><div class="fit"><iframe title="vip-course jm-b4" data-src="launch-email-for-chris/vip-course/jm-b4.html" loading="lazy" scrolling="no"></iframe><div class="fallback">If the email does not render here, <a href="launch-email-for-chris/vip-course/jm-b4.html" target="_blank" rel="noopener">open JM-B4 directly</a>.</div></div></div>
+</article></div>
+</div>
+<div class="stage"><h3>After the session · attended</h3></div>
+<div class="phase" id="vip-u"><h4>VIP follow-up · 20% Capsule discount</h4><p class="trig">VIP $1,460 buyers only, after attending your course. Code CAPSULE20 is applied by the button. Course u1–u4 are not sent (VIP-only, per Chris).</p><p class="auto">ActiveCampaign automation <code>FA_Onboarding_WIP (VIP follow-up)</code> · 4 emails · sent in this order</p>
+<div class="node" id="vip-jm-u1"><div class="pin">1/4</div>
+<article class="email">
+  <div class="meta"><div>
+    <div class="row"><span class="num">JM-U1</span><span class="tierpill">VIP $1,460</span><span class="time tbd">After attending the session · email 1 of 4 · delay per Chris&#x27;s automation</span></div>
+    <div class="subject">Thank you, %FIRSTNAME%. Your 20% off your first Culture Capsule is ready</div>
+    <p class="purpose"><b>Purpose:</b> Your VIP credit toward The Culture Capsules, code CAPSULE20, applied through the button.</p>
+    <p class="eyebrow">In-email banner: VIP Next Step · $249 toward The Culture Capsules · Timing source: email copy: “thank you for spending 90 minutes with your teacher”</p>
+    <p class="cta">Button: See The Blueprint</p>
+    <p class="src">File <code>launch-email-for-chris/vip-course/jm-u1.html</code> · FA_Onboarding_WIP (VIP follow-up) · Email 1 of 4</p>
+  </div><div class="actions">
+    <a class="btn" href="launch-email-for-chris/vip-course/jm-u1.html" target="_blank" rel="noopener">Open email</a>
+    <a class="btn" href="launch-email-for-chris/#vip-course-jm-u1">Copy / download</a>
+  </div></div>
+  <div class="frame"><div class="fit"><iframe title="vip-course jm-u1" data-src="launch-email-for-chris/vip-course/jm-u1.html" loading="lazy" scrolling="no"></iframe><div class="fallback">If the email does not render here, <a href="launch-email-for-chris/vip-course/jm-u1.html" target="_blank" rel="noopener">open JM-U1 directly</a>.</div></div></div>
+</article></div>
+<div class="node" id="vip-jm-u2"><div class="pin">2/4</div>
+<article class="email">
+  <div class="meta"><div>
+    <div class="row"><span class="num">JM-U2</span><span class="tierpill">VIP $1,460</span><span class="time tbd">After attending the session · email 2 of 4 · delay per Chris&#x27;s automation</span></div>
+    <div class="subject">What the course couldn’t fit into 90 minutes</div>
+    <p class="purpose"><b>Purpose:</b> Inside the Culture Capsules, and what changes when you take it.</p>
+    <p class="eyebrow">In-email banner: The Full Program · The Culture Capsules, built around you · Timing source: email copy: “thank you for spending 90 minutes with your teacher”</p>
+    <p class="cta">Button: Explore The Full Course</p>
+    <p class="src">File <code>launch-email-for-chris/vip-course/jm-u2.html</code> · FA_Onboarding_WIP (VIP follow-up) · Email 2 of 4</p>
+  </div><div class="actions">
+    <a class="btn" href="launch-email-for-chris/vip-course/jm-u2.html" target="_blank" rel="noopener">Open email</a>
+    <a class="btn" href="launch-email-for-chris/#vip-course-jm-u2">Copy / download</a>
+  </div></div>
+  <div class="frame"><div class="fit"><iframe title="vip-course jm-u2" data-src="launch-email-for-chris/vip-course/jm-u2.html" loading="lazy" scrolling="no"></iframe><div class="fallback">If the email does not render here, <a href="launch-email-for-chris/vip-course/jm-u2.html" target="_blank" rel="noopener">open JM-U2 directly</a>.</div></div></div>
+</article></div>
+<div class="node" id="vip-jm-u3"><div class="pin">3/4</div>
+<article class="email">
+  <div class="meta"><div>
+    <div class="row"><span class="num">JM-U3</span><span class="tierpill">VIP $1,460</span><span class="time tbd">After attending the session · email 3 of 4 · delay per Chris&#x27;s automation</span></div>
+    <div class="subject">The Blueprint, in numbers</div>
+    <p class="purpose"><b>Purpose:</b> What it costs, what your 20% off your first Culture Capsule changes, and the 14-day refund.</p>
+    <p class="eyebrow">In-email banner: Your Credit · $249 applied with code CAPSULE20 · Timing source: email copy: “thank you for spending 90 minutes with your teacher”</p>
+    <p class="cta">Button: Use My $249 Credit</p>
+    <p class="src">File <code>launch-email-for-chris/vip-course/jm-u3.html</code> · FA_Onboarding_WIP (VIP follow-up) · Email 3 of 4</p>
+  </div><div class="actions">
+    <a class="btn" href="launch-email-for-chris/vip-course/jm-u3.html" target="_blank" rel="noopener">Open email</a>
+    <a class="btn" href="launch-email-for-chris/#vip-course-jm-u3">Copy / download</a>
+  </div></div>
+  <div class="frame"><div class="fit"><iframe title="vip-course jm-u3" data-src="launch-email-for-chris/vip-course/jm-u3.html" loading="lazy" scrolling="no"></iframe><div class="fallback">If the email does not render here, <a href="launch-email-for-chris/vip-course/jm-u3.html" target="_blank" rel="noopener">open JM-U3 directly</a>.</div></div></div>
+</article></div>
+<div class="node" id="vip-jm-u4"><div class="pin">4/4</div>
+<article class="email">
+  <div class="meta"><div>
+    <div class="row"><span class="num">JM-U4</span><span class="tierpill">VIP $1,460</span><span class="time tbd">After attending the session · email 4 of 4 · delay per Chris&#x27;s automation</span></div>
+    <div class="subject">Your 20% off your first Culture Capsule, and a person to talk to</div>
+    <p class="purpose"><b>Purpose:</b> A next step to explore soon, and a real person to talk it through with.</p>
+    <p class="eyebrow">In-email banner: Your Next Step · Explore your 20% off your first Culture Capsule soon · Timing source: email copy: “thank you for spending 90 minutes with your teacher”</p>
+    <p class="cta">Button: Enroll With My Credit</p>
+    <p class="src">File <code>launch-email-for-chris/vip-course/jm-u4.html</code> · FA_Onboarding_WIP (VIP follow-up) · Email 4 of 4</p>
+  </div><div class="actions">
+    <a class="btn" href="launch-email-for-chris/vip-course/jm-u4.html" target="_blank" rel="noopener">Open email</a>
+    <a class="btn" href="launch-email-for-chris/#vip-course-jm-u4">Copy / download</a>
+  </div></div>
+  <div class="frame"><div class="fit"><iframe title="vip-course jm-u4" data-src="launch-email-for-chris/vip-course/jm-u4.html" loading="lazy" scrolling="no"></iframe><div class="fallback">If the email does not render here, <a href="launch-email-for-chris/vip-course/jm-u4.html" target="_blank" rel="noopener">open JM-U4 directly</a>.</div></div></div>
+</article></div>
+</div>
+<div class="stage"><h3>After the session · missed</h3></div>
+<div class="phase" id="vip-x"><h4>No-show buyers</h4><p class="trig">Paid, did not attend — the attendance record shows the buyer was not in the class.</p><p class="auto">ActiveCampaign automation <code>FA_No-Show Buyers_WIP</code> · 3 emails · sent in this order</p>
+<div class="node" id="vip-jm-x1"><div class="pin">1/3</div>
+<article class="email">
+  <div class="meta"><div>
+    <div class="row"><span class="num">JM-X1</span><span class="tierpill">VIP $1,460</span><span class="time tbd">After the session, attendance record = not in the class · email 1 of 3 · delay per Chris&#x27;s automation</span></div>
+    <div class="subject">We missed you, %FIRSTNAME%</div>
+    <p class="purpose"><b>Purpose:</b> You were not in the class. Here is where things stand, and how to reach us.</p>
+    <p class="eyebrow">In-email banner: Session Missed · Here is where things stand · Timing source: email copy: “Our attendance record shows you were not in the class”</p>
+    <p class="cta">Button: Open My Learning Platform</p>
+    <p class="src">File <code>launch-email-for-chris/vip-course/jm-x1.html</code> · FA_No-Show Buyers_WIP · Email 1 of 3</p>
+  </div><div class="actions">
+    <a class="btn" href="launch-email-for-chris/vip-course/jm-x1.html" target="_blank" rel="noopener">Open email</a>
+    <a class="btn" href="launch-email-for-chris/#vip-course-jm-x1">Copy / download</a>
+  </div></div>
+  <div class="frame"><div class="fit"><iframe title="vip-course jm-x1" data-src="launch-email-for-chris/vip-course/jm-x1.html" loading="lazy" scrolling="no"></iframe><div class="fallback">If the email does not render here, <a href="launch-email-for-chris/vip-course/jm-x1.html" target="_blank" rel="noopener">open JM-X1 directly</a>.</div></div></div>
+</article></div>
+<div class="node" id="vip-jm-x2"><div class="pin">2/3</div>
+<article class="email">
+  <div class="meta"><div>
+    <div class="row"><span class="num">JM-X2</span><span class="tierpill">VIP $1,460</span><span class="time tbd">After the session, attendance record = not in the class · email 2 of 3 · delay per Chris&#x27;s automation</span></div>
+    <div class="subject">Your course information, %FIRSTNAME%</div>
+    <p class="purpose"><b>Purpose:</b> Where to find your first lesson information and materials, and how to reach us.</p>
+    <p class="eyebrow">In-email banner: Follow-Up · Your learning platform and how to reach us · Timing source: email copy: “Our attendance record shows you were not in the class”</p>
+    <p class="cta">Button: Open My Learning Platform</p>
+    <p class="src">File <code>launch-email-for-chris/vip-course/jm-x2.html</code> · FA_No-Show Buyers_WIP · Email 2 of 3</p>
+  </div><div class="actions">
+    <a class="btn" href="launch-email-for-chris/vip-course/jm-x2.html" target="_blank" rel="noopener">Open email</a>
+    <a class="btn" href="launch-email-for-chris/#vip-course-jm-x2">Copy / download</a>
+  </div></div>
+  <div class="frame"><div class="fit"><iframe title="vip-course jm-x2" data-src="launch-email-for-chris/vip-course/jm-x2.html" loading="lazy" scrolling="no"></iframe><div class="fallback">If the email does not render here, <a href="launch-email-for-chris/vip-course/jm-x2.html" target="_blank" rel="noopener">open JM-X2 directly</a>.</div></div></div>
+</article></div>
+<div class="node" id="vip-jm-x3"><div class="pin">3/3</div>
+<article class="email">
+  <div class="meta"><div>
+    <div class="row"><span class="num">JM-X3</span><span class="tierpill">VIP $1,460</span><span class="time tbd">After the session, attendance record = not in the class · email 3 of 3 · delay per Chris&#x27;s automation</span></div>
+    <div class="subject">Still here if you need us, %FIRSTNAME%</div>
+    <p class="purpose"><b>Purpose:</b> A final follow-up on your missed session, and how to reach us.</p>
+    <p class="eyebrow">In-email banner: Final Follow-Up · Reply if you need help with your booking · Timing source: email copy: “Our attendance record shows you were not in the class”</p>
+    <p class="cta">Button: Open My Learning Platform</p>
+    <p class="src">File <code>launch-email-for-chris/vip-course/jm-x3.html</code> · FA_No-Show Buyers_WIP · Email 3 of 3</p>
+  </div><div class="actions">
+    <a class="btn" href="launch-email-for-chris/vip-course/jm-x3.html" target="_blank" rel="noopener">Open email</a>
+    <a class="btn" href="launch-email-for-chris/#vip-course-jm-x3">Copy / download</a>
+  </div></div>
+  <div class="frame"><div class="fit"><iframe title="vip-course jm-x3" data-src="launch-email-for-chris/vip-course/jm-x3.html" loading="lazy" scrolling="no"></iframe><div class="fallback">If the email does not render here, <a href="launch-email-for-chris/vip-course/jm-x3.html" target="_blank" rel="noopener">open JM-X3 directly</a>.</div></div></div>
+</article></div>
+</div>
+</section>
+</main>
+<footer>Built from the repo only — FACTS.md, launch-email-for-chris/README.md, AUDIT-CHECKLIST.md and the 36 email files. 30 of 36 emails have no send delay written in the repo and are marked “per Chris's automation” (all abandoned-cart, onboarding email 1, VIP follow-up and no-show emails). Stated cadence: 3 days before → 24 hours before → 2 hours before the session (onboarding b2–b4; also announced in VIP b1). <a href="index.html">Back to the gallery</a>.</footer>
+<script>
+(function(){
+  var W=640, frames=[].slice.call(document.querySelectorAll('iframe[data-src]'));
+  function fit(f){
+    try{ var d=f.contentDocument; if(d&&d.body){ var h=Math.max(d.documentElement.scrollHeight,d.body.scrollHeight); if(h>200){ f.dataset.h=h; f.style.height=(h+8)+'px'; } } }catch(e){}
+    scale(f);
+  }
+  function scale(f){
+    var fitBox=f.parentNode, avail=fitBox.clientWidth||W, s=avail/W, h=parseFloat(f.dataset.h||f.style.height||1900);
+    f.style.transform='scale('+s+')'; fitBox.style.height=(h*s+8)+'px'; fitBox.style.overflow='hidden';
+  }
+  function load(f){ if(f.src) return; f.src=f.getAttribute('data-src'); f.addEventListener('load',function(){ fit(f); setTimeout(function(){fit(f)},800); setTimeout(function(){fit(f)},2500); }); }
+  if('IntersectionObserver' in window){ var io=new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ load(e.target); io.unobserve(e.target); } }); },{rootMargin:'1200px'}); frames.forEach(function(f){io.observe(f)}); } else frames.forEach(load);
+  var t; window.addEventListener('resize',function(){ clearTimeout(t); t=setTimeout(function(){ frames.forEach(function(f){ if(f.src) fit(f); else scale(f); }); },120); });
+  frames.forEach(scale);
+  // scroll-spy: highlight current segment in the switcher
+  var links=[].slice.call(document.querySelectorAll('nav.switch a.seg'));
+  var secs=[].slice.call(document.querySelectorAll('section.segment'));
+  function spy(){ var nh=(document.querySelector('nav.switch')||{}).offsetHeight||140, y=window.scrollY+nh+12, cur=secs[0]; secs.forEach(function(s){ if(s.offsetTop<=y) cur=s; }); links.forEach(function(a){ a.classList.toggle('on', a.getAttribute('href')==='#'+cur.id); }); document.querySelector('nav.switch').setAttribute('data-cur',cur.id); }
+  window.addEventListener('scroll',spy,{passive:true}); spy();
+})();
+</script>
+</body></html>
